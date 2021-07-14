@@ -1,8 +1,9 @@
 console.log("press 1 to Generate random number and check min and max");
 console.log("press 2 check if day and month is between march 20 and july 20");
+console.log("press 3 check the year is leap year or not");
 var readlineSync = require("readline-sync");
 let input = readlineSync.questionInt();
-while (input > 2 || input <= 0) {
+while (input > 3 || input <= 0) {
   console.log("Invalid input");
   input = readlineSync.questionInt();
 }
@@ -13,9 +14,27 @@ switch (input) {
   case 2:
     CheckDayandMonth();
     break;
+    case 3:
+    CheckLeapYear();
+    break;
   default:
     console.log("Invalid Inupt");
     break;
+}
+
+//ability to check whether a year is leap year or not
+function CheckLeapYear(){
+    let year = readlineSync.question("Enter a year: ");
+    while (year > 9999 || year <= 999){
+        console.log("Invalid year, Try again. \n year must be a 3 digit number");
+        year = readlineSync.question("Enter a year: ");
+    }
+    if(year % 4 == 0 || year % 100 != 0 && year % 4 ==0 ){
+        console.log(year," is leap year ");
+    }
+    else{
+        console.log(year," is not a leap year");
+    }
 }
 
 //2 check if day and month is between march 20 and july 20
