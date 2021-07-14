@@ -1,26 +1,69 @@
-//1 ability to generate random number and check min and max number
-let arr = new Array(5);
-for(let i = 0; i< arr.length; i++){
-    arr[i] = Math.floor(100+ Math.random() * 899);
-    console.log(arr[i]);
+console.log("press 1 to Generate random number and check min and max");
+console.log("press 2 check if day and month is between march 20 and july 20");
+var readlineSync = require("readline-sync");
+let input = readlineSync.questionInt();
+while (input > 2 || input <= 0) {
+  console.log("Invalid input");
+  input = readlineSync.questionInt();
 }
-console.log("maximum number "+Max(arr));
-console.log("minimum number "+Min(arr));
+switch (input) {
+  case 1:
+    GenMinMax();
+    break;
+  case 2:
+    CheckDayandMonth();
+    break;
+  default:
+    console.log("Invalid Inupt");
+    break;
+}
 
-function Max(arr){
+//2 check if day and month is between march 20 and july 20
+function CheckDayandMonth() {
+  let day, month;
+  day = readlineSync.questionInt("Enter the day: ");
+  while (day > 31 || day <= 0) {
+    console.log("invalid day, Enter again between 1-31");
+    day = readlineSync.questionInt("Enter the day: ");
+  }
+  month = readlineSync.questionInt("Enter the month: ");
+  while (month > 12 || month <= 0) {
+    console.log("invalid month, Enter again between 1-12");
+    month = readlineSync.questionInt("Enter the month; ");
+  }
+  if(((month == 3 && day >= 20) || (month == 6 && day <= 20)) || (month > 3 && month < 6 ) ){
+      console.log("true");
+  }
+  else{
+    console.log("false");
+  }
+}
+
+// 1 ability to generate random number and check min and max numbers
+function GenMinMax() {
+  let arr = new Array(5);
+  for (let i = 0; i < arr.length; i++) {
+    arr[i] = Math.floor(100 + Math.random() * 899);
+    console.log(arr[i]);
+  }
+  console.log("maximum number " + Max(arr));
+  console.log("minimum number " + Min(arr));
+
+  function Max(arr) {
     let max = arr[0];
     let i = arr.length;
-    while(i--){
-        max = arr[i] > max ? arr[i] : max;
+    while (i--) {
+      max = arr[i] > max ? arr[i] : max;
     }
     return max;
-}
+  }
 
-function Min(arr){
+  function Min(arr) {
     let min = arr[0];
     let i = arr.length;
-    while(i--){
-        min = arr[i] < min ? arr[i] : min;
+    while (i--) {
+      min = arr[i] < min ? arr[i] : min;
     }
     return min;
+  }
 }
